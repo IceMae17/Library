@@ -139,6 +139,20 @@ function IceHub.CreateMain()
 	Menu.Text = "Menu"
 	Menu.TextColor3 = Color3.fromRGB(0, 255, 255)
 	Menu.TextSize = 12.000
+	Menu.MouseButton1Click:Connect(function()
+		for i,v in pairs(TabContainer.ScrollingFrame:GetChildren()) do
+			if v:IsA("TextButton") then
+				v.TextColor3 = Color3.fromRGB(255, 255, 255)
+			end
+		end
+		Menu.TextColor3 = Color3.fromRGB(0, 255, 255)
+		for i,v in pairs(FrameContainer:GetChildren()) do
+			if v:IsA("ScrollingFrame") then
+				v.Visible = false
+			end
+		end
+		FrameContainer.MenuPage.Visible = true
+	end)
 
 	UICornersss.CornerRadius = UDim.new(0, 3)
 	UICornersss.Parent = Menu
@@ -760,124 +774,6 @@ function IceHub.CreateMain()
 							wait(0.18)
 							TemplateBox.Text = ""
 						end)
-						
-						function Elements:NewSlider(Text, MaxValue, MinValue, callback)
-							MaxValue = MaxValue or 500
-							MinValue = MinValue or 16
-							FirstValue = FirstValue or 0
-							callback = callback or function() end
-							
-							
-							local TemplateSlider = Instance.new("TextButton")
-							local UICorner_15 = Instance.new("UICorner")
-							local SliderButton = Instance.new("TextButton")
-							local UICorner_16 = Instance.new("UICorner")
-							local Bar = Instance.new("Frame")
-							local UICorner_17 = Instance.new("UICorner")
-							local Value = Instance.new("TextLabel")
-							local SliderTitle = Instance.new("TextLabel")
-							
-							TemplateSlider.Name = "TemplateSlider"
-							TemplateSlider.Parent = TemplatePage
-							TemplateSlider.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-							TemplateSlider.BorderColor3 = Color3.fromRGB(20, 20, 20)
-							TemplateSlider.Position = UDim2.new(0, 0, 0.0903614461, 0)
-							TemplateSlider.Size = UDim2.new(0, 295, 0, 30)
-							TemplateSlider.AutoButtonColor = false
-
-							UICorner_15.CornerRadius = UDim.new(0, 4)
-							UICorner_15.Parent = TemplateSlider
-
-							SliderButton.Name = "SliderButton"
-							SliderButton.Parent = TemplateSlider
-							SliderButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-							SliderButton.BorderColor3 = Color3.fromRGB(30, 30, 30)
-							SliderButton.Position = UDim2.new(0.441684395, 0, 0.372043341, 0)
-							SliderButton.Size = UDim2.new(0, 150, 0, 6)
-							SliderButton.AutoButtonColor = false
-							SliderButton.Font = Enum.Font.SourceSans
-							SliderButton.Text = ""
-							SliderButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-							SliderButton.TextSize = 14.000
-
-							UICorner_16.CornerRadius = UDim.new(0, 4)
-							UICorner_16.Parent = SliderButton
-
-							Bar.Name = "Bar"
-							Bar.Parent = SliderButton
-							Bar.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
-							Bar.BorderColor3 = Color3.fromRGB(0, 255, 255)
-							Bar.Position = UDim2.new(-0.00427652989, 0, -0.0999959335, 0)
-							Bar.Size = UDim2.new(0, 0, 0, 6)
-
-							UICorner_17.CornerRadius = UDim.new(0, 4)
-							UICorner_17.Parent = Bar
-
-							Value.Name = "Value"
-							Value.Parent = TemplateSlider
-							Value.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-							Value.BackgroundTransparency = 1.000
-							Value.Position = UDim2.new(0.315147907, 0, 0.199999809, 0)
-							Value.Size = UDim2.new(0, 30, 0, 15)
-							Value.Font = Enum.Font.SourceSans
-							Value.Text = ""
-							Value.TextColor3 = Color3.fromRGB(255, 255, 255)
-							Value.TextSize = 14.000
-							Value.TextWrapped = true
-
-							SliderTitle.Name = "SliderTitle"
-							SliderTitle.Parent = TemplateSlider
-							SliderTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-							SliderTitle.BackgroundTransparency = 1.000
-							SliderTitle.Position = UDim2.new(0.0392857157, 0, 0.266666681, 0)
-							SliderTitle.Size = UDim2.new(0, 70, 0, 15)
-							SliderTitle.Font = Enum.Font.Gotham
-							SliderTitle.Text = ""..Text
-							SliderTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-							SliderTitle.TextSize = 12.000
-							SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
-							
-							updateSectionFrame()
-							UpdateSize()
-							local mouse = game:GetService("Players").LocalPlayer:GetMouse()
-							
-							local ms = game.Players.LocalPlayer:GetMouse()
-							local uis = game:GetService("UserInputService")
-							local btn = TemplateSlider
-							local hovering = false
-							
-							local Value
-							SliderButton.MouseButton1Down:Connect(function()
-								if not focusing then
-									Value = math.floor((((tonumber(MaxValue) - tonumber(MinValue)) / 149) * Bar.AbsoluteSize.X) + tonumber(MinValue)) or 0
-									pcall(function()
-										callback(Value)
-									end)
-									Bar:TweenSize(UDim2.new(0, math.clamp(mouse.X - Bar.AbsolutePosition.X, 0, 149), 0, 6), "InOut", "Linear", 0.05, true)
-									moveconnection = mouse.Move:Connect(function()
-										Value.Text = Value
-										Value = math.floor((((tonumber(MaxValue) - tonumber(MinValue)) / 149) * Bar.AbsoluteSize.X) + tonumber(MinValue))
-										pcall(function()
-											callback(Value)
-										end)
-										Bar:TweenSize(UDim2.new(0, math.clamp(mouse.X - Bar.AbsolutePosition.X, 0, 149), 0, 6), "InOut", "Linear", 0.05, true)
-									end)
-									releaseconnection = uis.InputEnded:Connect(function(Mouse)
-										if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-											Value = math.floor((((tonumber(MaxValue) - tonumber(MinValue)) / 149) * Bar.AbsoluteSize.X) + tonumber(MinValue))
-											pcall(function()
-												callback(Value)
-											end)
-											Value.Text = Value
-											Bar:TweenSize(UDim2.new(0, math.clamp(mouse.X - Bar.AbsolutePosition.X, 0, 149), 0, 6), "InOut", "Linear", 0.05, true)
-											moveconnection:Disconnect()
-											releaseconnection:Disconnect()
-										end
-									end)
-								end
-							end)
-							
-						end
 						
 						function Elements:NewTutorial(Images)
 							callback = callback or function() end
