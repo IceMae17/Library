@@ -797,7 +797,7 @@ function IceHub.CreateMain()
 					updateSectionFrame()
 					UpdateSize()
 					
-					function Elements:NewTextBox(callback)
+					function Elements:NewTextBox()
 						local TemplateBox = Instance.new("TextBox")
 						local UICorner_12 = Instance.new("UICorner")
 						
