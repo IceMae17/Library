@@ -824,14 +824,10 @@ function IceHub.CreateMain()
 						updateSectionFrame()
 						UpdateSize()
 
-						TemplateBox.FocusLost:Connect(function(EnterPressed)
-							if not EnterPressed then 
-								return
-							else
+						TemplateBox.FocusLost:Connect(function()
 								callback(TemplateBox.Text)
 								wait(0.18)
-								TemplateBox.Text = ""  
-							end
+								TemplateBox.Text = ""
 						end)
 					end
 				end
