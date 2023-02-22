@@ -797,6 +797,40 @@ function IceHub.CreateMain()
 					
 					updateSectionFrame()
 					UpdateSize()
+					
+					function Elements:NewTextBox(Text, PlaceholderText, callback)
+						local TemplateBox = Instance.new("TextBox")
+						local UICorner_12 = Instance.new("UICorner")
+
+						TemplateBox.Name = "TemplateBox"
+						TemplateBox.Parent = TemplatePage
+						TemplateBox.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+						TemplateBox.BorderColor3 = Color3.fromRGB(20, 20, 20)
+						TemplateBox.Position = UDim2.new(0, 0, 0.39759019, 0)
+						TemplateBox.Size = UDim2.new(0, 295, 0, 30)
+						TemplateBox.Font = Enum.Font.Gotham
+						TemplateBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+						TemplateBox.PlaceholderText = ""..PlaceholderText
+						TemplateBox.Text = ""..Text
+						TemplateBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+						TemplateBox.TextSize = 12.000
+
+						UICorner_12.CornerRadius = UDim.new(0, 4)
+						UICorner_12.Parent = TemplateBox
+
+						updateSectionFrame()
+						UpdateSize()
+
+						TemplateBox.FocusLost:Connect(function(EnterPressed)
+							if not EnterPressed then 
+								return
+							else
+								callback(TemplateBox.Text)
+								wait(0.18)
+								TemplateBox.Text = ""  
+							end
+						end)
+					end
 				end
 			end
 			return Elements
