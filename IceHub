@@ -799,9 +799,12 @@ function IceHub.CreateMain()
 					UpdateSize()
 					
 					function Elements:NewTextBox(Text, PlaceholderText, callback)
+						callback = callback or function() end
+						-- TemplateBox
 						local TemplateBox = Instance.new("TextBox")
 						local UICorner_12 = Instance.new("UICorner")
-
+						
+						-- TemplateBox
 						TemplateBox.Name = "TemplateBox"
 						TemplateBox.Parent = TemplatePage
 						TemplateBox.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
