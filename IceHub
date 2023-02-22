@@ -769,7 +769,8 @@ function IceHub.CreateMain()
 				UICorner_11.CornerRadius = UDim.new(0, 4)
 				UICorner_11.Parent = TemplateButton
 				
-				
+				updateSectionFrame()
+				UpdateSize()
 				
 				TemplateButton.MouseButton1Click:Connect(function()
 					callback()
@@ -796,8 +797,6 @@ function IceHub.CreateMain()
 					
 					updateSectionFrame()
 					UpdateSize()
-					
-					
 				end
 			end
 			return Elements
