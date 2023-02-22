@@ -137,7 +137,7 @@ function IceHub.CreateMain()
 	UIListLayout.Parent = ScrollingFrame
 	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	UIListLayout.Padding = UDim.new(0, 3)
-	
+
 	Menu.Name = "TemplateTab"
 	Menu.Parent = ScrollingFrame
 	Menu.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
@@ -696,9 +696,9 @@ function IceHub.CreateMain()
 		PageListLayout.Padding = UDim.new(0, 3)
 
 		table.insert(Tabs, TabName)
-		
+
 		UpdateSize()
-		
+
 		TemplatePage.ChildAdded:Connect(UpdateSize)
 		TemplatePage.ChildRemoved:Connect(UpdateSize)
 
@@ -746,14 +746,14 @@ function IceHub.CreateMain()
 
 			updateSectionFrame()
 			UpdateSize()
-			
+
 			local Elements = {}
 			function Elements:NewButton(ButtonName, callback)
 				callback = callback or function() end
 				-- TemplateButton
 				local TemplateButton = Instance.new("TextButton")
 				local UICorner_11 = Instance.new("UICorner")
-				
+
 				-- TemplateButton
 				TemplateButton.Name = "TemplateButton"
 				TemplateButton.Parent = TemplatePage
@@ -768,55 +768,65 @@ function IceHub.CreateMain()
 
 				UICorner_11.CornerRadius = UDim.new(0, 4)
 				UICorner_11.Parent = TemplateButton
-				
-				
-				
+
+
+
 				TemplateButton.MouseButton1Click:Connect(function()
 					callback()
 				end)
-				
-				function Elements:NewLabel(LabelText)
-					-- TemplateLabel
-					local TemplateLabel = Instance.new("TextLabel")
-					local UICorner_10 = Instance.new("UICorner")
-					
-					-- TemplateLabel
-					TemplateLabel.Name = "CustomLabel"
-					TemplateLabel.Parent = TemplatePage
-					TemplateLabel.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-					TemplateLabel.BorderColor3 = Color3.fromRGB(20, 20, 20)
-					TemplateLabel.Size = UDim2.new(0, 295, 0, 30)
-					TemplateLabel.Font = Enum.Font.Gotham
-					TemplateLabel.Text = ""..LabelText
-					TemplateLabel.TextColor3 = Color3.fromRGB(0, 255, 255)
-					TemplateLabel.TextSize = 12.000
 
-					UICorner_10.CornerRadius = UDim.new(0, 4)
-					UICorner_10.Parent = TemplateLabel
-					
+				function Elements:NewTextBox(Text, PlaceholderText, callback)
+					local TemplateBox = Instance.new("TextBox")
+					local UICorner_12 = Instance.new("UICorner")
+
+					TemplateBox.Name = "TemplateBox"
+					TemplateBox.Parent = TemplatePage
+					TemplateBox.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+					TemplateBox.BorderColor3 = Color3.fromRGB(20, 20, 20)
+					TemplateBox.Position = UDim2.new(0, 0, 0.39759019, 0)
+					TemplateBox.Size = UDim2.new(0, 295, 0, 30)
+					TemplateBox.Font = Enum.Font.Gotham
+					TemplateBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+					TemplateBox.PlaceholderText = ""..PlaceholderText
+					TemplateBox.Text = ""..Text
+					TemplateBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+					TemplateBox.TextSize = 12.000
+
+					UICorner_12.CornerRadius = UDim.new(0, 4)
+					UICorner_12.Parent = TemplateBox
+
 					updateSectionFrame()
 					UpdateSize()
-					
-					function Elements:NewTextBox()
-						local TemplateBox = Instance.new("TextBox")
-						local UICorner_12 = Instance.new("UICorner")
-						
-						TemplateBox.Name = "TemplateBox"
-						TemplateBox.Parent = TemplatePage
-						TemplateBox.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-						TemplateBox.BorderColor3 = Color3.fromRGB(20, 20, 20)
-						TemplateBox.Position = UDim2.new(0, 0, 0.39759019, 0)
-						TemplateBox.Size = UDim2.new(0, 295, 0, 30)
-						TemplateBox.Font = Enum.Font.Gotham
-						TemplateBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
-						TemplateBox.PlaceholderText = ""
-						TemplateBox.Text = ""
-						TemplateBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-						TemplateBox.TextSize = 12.000
 
-						UICorner_12.CornerRadius = UDim.new(0, 4)
-						UICorner_12.Parent = TemplateBox
-						
+					TemplateBox.FocusLost:Connect(function(EnterPressed)
+						if not EnterPressed then 
+							return
+						else
+							callback(TemplateBox.Text)
+							wait(0.18)
+							TemplateBox.Text = ""  
+						end
+					end)
+
+					function Elements:NewLabel(LabelText)
+						-- TemplateLabel
+						local TemplateLabel = Instance.new("TextLabel")
+						local UICorner_10 = Instance.new("UICorner")
+
+						-- TemplateLabel
+						TemplateLabel.Name = "CustomLabel"
+						TemplateLabel.Parent = TemplatePage
+						TemplateLabel.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+						TemplateLabel.BorderColor3 = Color3.fromRGB(20, 20, 20)
+						TemplateLabel.Size = UDim2.new(0, 295, 0, 30)
+						TemplateLabel.Font = Enum.Font.Gotham
+						TemplateLabel.Text = ""..LabelText
+						TemplateLabel.TextColor3 = Color3.fromRGB(0, 255, 255)
+						TemplateLabel.TextSize = 12.000
+
+						UICorner_10.CornerRadius = UDim.new(0, 4)
+						UICorner_10.Parent = TemplateLabel
+
 						updateSectionFrame()
 						UpdateSize()
 					end
