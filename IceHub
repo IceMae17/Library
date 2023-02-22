@@ -52,8 +52,6 @@ function IceHub.CreateMain()
 	local UICorner_17 = Instance.new("UICorner")
 	local Value = Instance.new("TextLabel")
 	local SliderTitle = Instance.new("TextLabel")
-	local TutorialPage = Instance.new("ScrollingFrame")
-	local ClickBlock = Instance.new("TextButton")
 	local SettingsPage = Instance.new("ScrollingFrame")
 	local UIListLayout_4 = Instance.new("UIListLayout")
 	local TopFrame = Instance.new("Frame")
@@ -362,29 +360,6 @@ function IceHub.CreateMain()
 	SliderTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 	SliderTitle.TextSize = 12.000
 	SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
-
-	TutorialPage.Name = "TutorialPage"
-	TutorialPage.Parent = FrameContainer
-	TutorialPage.Active = true
-	TutorialPage.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-	TutorialPage.BackgroundTransparency = 1.000
-	TutorialPage.BorderColor3 = Color3.fromRGB(30, 30, 30)
-	TutorialPage.Position = UDim2.new(0, 0, 0.136466324, 0)
-	TutorialPage.Size = UDim2.new(0, 425, 0, 181)
-	TutorialPage.Visible = false
-	TutorialPage.ScrollBarThickness = 1
-
-	ClickBlock.Name = "ClickBlock"
-	ClickBlock.Parent = TutorialPage
-	ClickBlock.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	ClickBlock.BackgroundTransparency = 1.000
-	ClickBlock.Size = UDim2.new(0, 425, 0, 181)
-	ClickBlock.Visible = false
-	ClickBlock.AutoButtonColor = false
-	ClickBlock.Font = Enum.Font.SourceSans
-	ClickBlock.Text = ""
-	ClickBlock.TextColor3 = Color3.fromRGB(0, 0, 0)
-	ClickBlock.TextSize = 14.000
 
 	SettingsPage.Name = "SettingsPage"
 	SettingsPage.Parent = FrameContainer
@@ -817,6 +792,8 @@ function IceHub.CreateMain()
 								local UICorner_19 = Instance.new("UICorner")
 								local TutorialImage = Instance.new("ImageLabel")
 								local UICorner_20 = Instance.new("UICorner")
+								local TutorialPage = Instance.new("ScrollingFrame")
+								local ClickBlock = Instance.new("TextButton")
 
 								TemplateTutorial.Name = "TemplateTutorial"
 								TemplateTutorial.Parent = TemplatePage
@@ -831,6 +808,29 @@ function IceHub.CreateMain()
 
 								UICorner_13.CornerRadius = UDim.new(0, 4)
 								UICorner_13.Parent = TemplateTutorial
+								
+								TutorialPage.Name = "TutorialPage"
+								TutorialPage.Parent = FrameContainer
+								TutorialPage.Active = true
+								TutorialPage.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+								TutorialPage.BackgroundTransparency = 1.000
+								TutorialPage.BorderColor3 = Color3.fromRGB(30, 30, 30)
+								TutorialPage.Position = UDim2.new(0, 0, 0.136466324, 0)
+								TutorialPage.Size = UDim2.new(0, 425, 0, 181)
+								TutorialPage.Visible = false
+								TutorialPage.ScrollBarThickness = 1
+
+								ClickBlock.Name = "ClickBlock"
+								ClickBlock.Parent = TutorialPage
+								ClickBlock.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+								ClickBlock.BackgroundTransparency = 1.000
+								ClickBlock.Size = UDim2.new(0, 425, 0, 181)
+								ClickBlock.Visible = false
+								ClickBlock.AutoButtonColor = false
+								ClickBlock.Font = Enum.Font.SourceSans
+								ClickBlock.Text = ""
+								ClickBlock.TextColor3 = Color3.fromRGB(0, 0, 0)
+								ClickBlock.TextSize = 14.000
 
 								TutorialFrame.Name = "TutorialFrame"
 								TutorialFrame.Parent = TutorialPage
@@ -878,6 +878,8 @@ function IceHub.CreateMain()
 
 								UICorner_20.CornerRadius = UDim.new(0, 4)
 								UICorner_20.Parent = TutorialImage
+								
+								
 								
 								if _G.TutorialTweening == false then
 									_G.TutorialTweening = true
