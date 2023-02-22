@@ -17,6 +17,8 @@ function IceHub.CreateMain()
 	local UICorner_2 = Instance.new("UICorner")
 	local ScrollingFrame = Instance.new("ScrollingFrame")
 	local UIListLayout = Instance.new("UIListLayout")
+	local Menu = Instance.new("TextButton")
+	local UICornersss = Instance.new("UICorner")
 	local FrameContainer = Instance.new("Folder")
 	local MenuPage = Instance.new("ScrollingFrame")
 	local NameLabel = Instance.new("TextLabel")
@@ -135,6 +137,21 @@ function IceHub.CreateMain()
 	UIListLayout.Parent = ScrollingFrame
 	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	UIListLayout.Padding = UDim.new(0, 3)
+	
+	Menu.Name = "TemplateTab"
+	Menu.Parent = ScrollingFrame
+	Menu.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+	Menu.BorderColor3 = Color3.fromRGB(20, 20, 20)
+	Menu.Position = UDim2.new(0, 0, -1.77427779e-07, 0)
+	Menu.Size = UDim2.new(0, 99, 0, 30)
+	Menu.AutoButtonColor = false
+	Menu.Font = Enum.Font.Gotham
+	Menu.Text = "Menu"
+	Menu.TextColor3 = Color3.fromRGB(0, 255, 255)
+	Menu.TextSize = 12.000
+
+	UICornersss.CornerRadius = UDim.new(0, 3)
+	UICornersss.Parent = Menu
 
 	FrameContainer.Name = "FrameContainer"
 	FrameContainer.Parent = MainFrame
@@ -643,7 +660,7 @@ function IceHub.CreateMain()
 			local cS = PageListLayout.AbsoluteContentSize
 
 			game.TweenService:Create(TemplatePage, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-				CanvasSize = UDim2.new(0,cS.X,0,cS.Y)
+				CanvasSize = UDim2.new(0,0,0,cS.Y)
 			}):Play()
 		end
 
