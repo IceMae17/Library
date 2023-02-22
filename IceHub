@@ -1,4 +1,3 @@
-
 local IceHub = {}
 local Options = loadstring(game:HttpGet('https://raw.githubusercontent.com/IceMael7/IceHubOptions/main/IceHub'))()
 
@@ -55,12 +54,6 @@ function IceHub.CreateMain()
 	local SliderTitle = Instance.new("TextLabel")
 	local TutorialPage = Instance.new("ScrollingFrame")
 	local ClickBlock = Instance.new("TextButton")
-	local TutorialFrame = Instance.new("Frame")
-	local UICorner_18 = Instance.new("UICorner")
-	local Understand = Instance.new("TextButton")
-	local UICorner_19 = Instance.new("UICorner")
-	local TutorialImage = Instance.new("ImageLabel")
-	local UICorner_20 = Instance.new("UICorner")
 	local SettingsPage = Instance.new("ScrollingFrame")
 	local UIListLayout_4 = Instance.new("UIListLayout")
 	local TopFrame = Instance.new("Frame")
