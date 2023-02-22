@@ -720,6 +720,34 @@ function IceHub.CreateMain()
 				TemplateButton.MouseButton1Click:Connect(function()
 					callback()
 				end)
+				
+				function Elements:NewToggle(ToggleText, callback)
+					callback = callback or function() end
+					-- TemplateToggle
+					local TemplateToggle = Instance.new("TextButton")
+					local UICornerToggle = Instance.new("UICorner")
+
+					-- TemplateToggle
+					TemplateToggle.Name = "TemplateButton"
+					TemplateToggle.Parent = TemplatePage
+					TemplateToggle.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+					TemplateToggle.BorderColor3 = Color3.fromRGB(20, 20, 20)
+					TemplateToggle.Position = UDim2.new(0, 0, 0.198794991, 0)
+					TemplateToggle.Size = UDim2.new(0, 295, 0, 30)
+					TemplateToggle.Font = Enum.Font.Gotham
+					TemplateToggle.Text = ""..ToggleText
+					TemplateToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+					TemplateToggle.TextSize = 12.000
+
+					UICornerToggle.CornerRadius = UDim.new(0, 4)
+					UICornerToggle.Parent = TemplateToggle
+
+					updateSectionFrame()
+					UpdateSize()
+
+					TemplateToggle.MouseButton1Click:Connect(function()
+						callback()
+					end)
 
 				function Elements:NewLabel(LabelText)
 					-- TemplateLabel
@@ -904,33 +932,6 @@ function IceHub.CreateMain()
 								end
 							end)
 							
-							function Elements:NewToggle(ToggleText, callback)
-								callback = callback or function() end
-								-- TemplateToggle
-								local TemplateToggle = Instance.new("TextButton")
-								local UICornerToggle = Instance.new("UICorner")
-
-								-- TemplateToggle
-								TemplateToggle.Name = "TemplateButton"
-								TemplateToggle.Parent = TemplatePage
-								TemplateToggle.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-								TemplateToggle.BorderColor3 = Color3.fromRGB(20, 20, 20)
-								TemplateToggle.Position = UDim2.new(0, 0, 0.198794991, 0)
-								TemplateToggle.Size = UDim2.new(0, 295, 0, 30)
-								TemplateToggle.Font = Enum.Font.Gotham
-								TemplateToggle.Text = ""..ToggleText
-								TemplateToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
-								TemplateToggle.TextSize = 12.000
-
-								UICornerToggle.CornerRadius = UDim.new(0, 4)
-								UICornerToggle.Parent = TemplateToggle
-								
-								updateSectionFrame()
-								UpdateSize()
-								
-								TemplateToggle.MouseButton1Click:Connect(function()
-									callback()
-								end)
 							end
 						end
 					end
