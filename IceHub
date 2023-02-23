@@ -665,8 +665,9 @@ function IceHub.CreateMain()
 
 		local Sections = {}
 		local focusing = false
+		local viewDe = false
 
-		function Sections:NewSection(secName, hidden)
+		function Sections:NewSection()
 			-- TemplateSection
 			local TemplateSection = Instance.new("Frame")
 			local SectionListLayout = Instance.new("UIListLayout")
@@ -690,7 +691,7 @@ function IceHub.CreateMain()
 
 			updateSectionFrame()
 			UpdateSize()
-			
+
 			local Elements = {}
 			function Elements:NewButton(ButtonName, callback)
 				callback = callback or function() end
@@ -719,68 +720,192 @@ function IceHub.CreateMain()
 				TemplateButton.MouseButton1Click:Connect(function()
 					callback()
 				end)
+			end
+
+			function Elements:NewLabel(LabelText)
+				-- TemplateLabel
+				local TemplateLabel = Instance.new("TextLabel")
+				local UICorner_10 = Instance.new("UICorner")
+
+				-- TemplateLabel
+				TemplateLabel.Name = "CustomLabel"
+				TemplateLabel.Parent = TemplatePage
+				TemplateLabel.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+				TemplateLabel.BorderColor3 = Color3.fromRGB(20, 20, 20)
+				TemplateLabel.Size = UDim2.new(0, 295, 0, 30)
+				TemplateLabel.Font = Enum.Font.Gotham
+				TemplateLabel.Text = ""..LabelText
+				TemplateLabel.TextColor3 = Color3.fromRGB(0, 255, 255)
+				TemplateLabel.TextSize = 12.000
+
+				UICorner_10.CornerRadius = UDim.new(0, 4)
+				UICorner_10.Parent = TemplateLabel
+
+				updateSectionFrame()
+				UpdateSize()
+			end
+
+			function Elements:NewTextBox(Text, PlaceholderText, callback)
+				callback = callback or function() end
+				-- TemplateBox
+				local TemplateBox = Instance.new("TextBox")
+				local UICorner_12 = Instance.new("UICorner")
+
+				-- TemplateBox
+				TemplateBox.Name = "TemplateBox"
+				TemplateBox.Parent = TemplatePage
+				TemplateBox.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+				TemplateBox.BorderColor3 = Color3.fromRGB(20, 20, 20)
+				TemplateBox.Position = UDim2.new(0, 0, 0.39759019, 0)
+				TemplateBox.Size = UDim2.new(0, 295, 0, 30)
+				TemplateBox.Font = Enum.Font.Gotham
+				TemplateBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+				TemplateBox.PlaceholderText = ""..PlaceholderText
+				TemplateBox.Text = ""..Text
+				TemplateBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+				TemplateBox.TextSize = 12.000
+
+				UICorner_12.CornerRadius = UDim.new(0, 4)
+				UICorner_12.Parent = TemplateBox
+
+				updateSectionFrame()
+				UpdateSize()
+
+				TemplateBox.FocusLost:Connect(function()
+					callback(TemplateBox.Text)
+					wait(0.18)
+					TemplateBox.Text = ""
+				end)
+			end
+
+			function Elements:NewTutorial(Images)
+				-- TemplateTutorial
+				local TemplateTutorial = Instance.new("TextButton")
+				local UICorner_13 = Instance.new("UICorner")
 				
-				local Elements = {}
-				function Elements:NewButton(ButtonName, callback)
-					callback = callback or function() end
-					-- TemplateButton
-					local TemplateButton = Instance.new("TextButton")
-					local UICorner_11 = Instance.new("UICorner")
+				-- TemplateTutorial
+				TemplateTutorial.Name = "TemplateTutorial"
+				TemplateTutorial.Parent = TemplatePage
+				TemplateTutorial.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+				TemplateTutorial.BorderColor3 = Color3.fromRGB(20, 20, 20)
+				TemplateTutorial.Position = UDim2.new(0, 0, 0.59638536, 0)
+				TemplateTutorial.Size = UDim2.new(0, 295, 0, 30)
+				TemplateTutorial.Font = Enum.Font.Gotham
+				TemplateTutorial.Text = "Tutorial"
+				TemplateTutorial.TextColor3 = Color3.fromRGB(255, 255, 255)
+				TemplateTutorial.TextSize = 12.000
 
-					-- TemplateButton
-					TemplateButton.Name = "TemplateButton"
-					TemplateButton.Parent = TemplatePage
-					TemplateButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-					TemplateButton.BorderColor3 = Color3.fromRGB(20, 20, 20)
-					TemplateButton.Position = UDim2.new(0, 0, 0.198794991, 0)
-					TemplateButton.Size = UDim2.new(0, 295, 0, 30)
-					TemplateButton.Font = Enum.Font.Gotham
-					TemplateButton.Text = ""..ButtonName
-					TemplateButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-					TemplateButton.TextSize = 12.000
+				UICorner_13.CornerRadius = UDim.new(0, 4)
+				UICorner_13.Parent = TemplateTutorial
 
-					UICorner_11.CornerRadius = UDim.new(0, 4)
-					UICorner_11.Parent = TemplateButton
+				updateSectionFrame()
+				UpdateSize()
 
-					updateSectionFrame()
-					UpdateSize()
+				_G.TutorialTweening = false
+				TemplateTutorial.MouseButton1Click:Connect(function()
+					local TutorialFrame = Instance.new("Frame")
+					local UICorner_18 = Instance.new("UICorner")
+					local Understand = Instance.new("TextButton")
+					local UICorner_19 = Instance.new("UICorner")
+					local TutorialImage = Instance.new("ImageLabel")
+					local UICorner_20 = Instance.new("UICorner")
+					local TutorialPage = Instance.new("ScrollingFrame")
+					local ClickBlock = Instance.new("TextButton")
 
-					TemplateButton.MouseButton1Click:Connect(function()
-						callback()
+					TemplateTutorial.Name = "TemplateTutorial"
+					TemplateTutorial.Parent = TemplatePage
+					TemplateTutorial.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+					TemplateTutorial.BorderColor3 = Color3.fromRGB(20, 20, 20)
+					TemplateTutorial.Position = UDim2.new(0, 0, 0.59638536, 0)
+					TemplateTutorial.Size = UDim2.new(0, 295, 0, 30)
+					TemplateTutorial.Font = Enum.Font.Gotham
+					TemplateTutorial.Text = "Tutorial"
+					TemplateTutorial.TextColor3 = Color3.fromRGB(255, 255, 255)
+					TemplateTutorial.TextSize = 12.000
+
+					UICorner_13.CornerRadius = UDim.new(0, 4)
+					UICorner_13.Parent = TemplateTutorial
+
+					TutorialPage.Name = "TutorialPage"
+					TutorialPage.Parent = FrameContainer
+					TutorialPage.Active = true
+					TutorialPage.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+					TutorialPage.BackgroundTransparency = 1.000
+					TutorialPage.BorderColor3 = Color3.fromRGB(30, 30, 30)
+					TutorialPage.Position = UDim2.new(0, 0, 0.136466324, 0)
+					TutorialPage.Size = UDim2.new(0, 425, 0, 181)
+					TutorialPage.Visible = false
+					TutorialPage.ScrollBarThickness = 1
+
+					ClickBlock.Name = "ClickBlock"
+					ClickBlock.Parent = TutorialPage
+					ClickBlock.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+					ClickBlock.BackgroundTransparency = 1.000
+					ClickBlock.Size = UDim2.new(0, 425, 0, 181)
+					ClickBlock.Visible = false
+					ClickBlock.AutoButtonColor = false
+					ClickBlock.Font = Enum.Font.SourceSans
+					ClickBlock.Text = ""
+					ClickBlock.TextColor3 = Color3.fromRGB(0, 0, 0)
+					ClickBlock.TextSize = 14.000
+
+					TutorialFrame.Name = "TutorialFrame"
+					TutorialFrame.Parent = TutorialPage
+					TutorialFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+					TutorialFrame.BorderColor3 = Color3.fromRGB(30, 30, 30)
+					TutorialFrame.Position = UDim2.new(0, 0, -0.5, 0)
+					TutorialFrame.Size = UDim2.new(0, 425, 0, 181)
+
+					UICorner_18.CornerRadius = UDim.new(0, 4)
+					UICorner_18.Parent = TutorialFrame
+
+					Understand.Name = "Understand"
+					Understand.Parent = TutorialFrame
+					Understand.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+					Understand.BorderColor3 = Color3.fromRGB(20, 20, 20)
+					Understand.Position = UDim2.new(0.0199999996, 0, 0.828000009, 0)
+					Understand.Size = UDim2.new(0, 410, 0, 25)
+					Understand.AutoButtonColor = false
+					Understand.Font = Enum.Font.SourceSans
+					Understand.Text = "Okay, I understand."
+					Understand.TextColor3 = Color3.fromRGB(255, 255, 255)
+					Understand.TextSize = 15.000
+					Understand.MouseButton1Click:Connect(function()
+						if _G.TutorialTweening == false then
+							_G.TutorialTweening = true
+							TabContainer.Visible = true
+							TutorialFrame:TweenPosition(UDim2.new(0, 0, -0.5, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Quad, 1, true)
+							wait(1)
+							ClickBlock.Visible = false
+							_G.TutorialTweening = false
+							TutorialPage:Destroy()
+						end
 					end)
-					
-					local Elements = {}
-					function Elements:NewToggle(ToggleText, callback)
-						callback = callback or function() end
-						-- TemplateToggle
-						local TemplateToggle = Instance.new("TextButton")
-						local UICornerToggle = Instance.new("UICorner")
 
-						-- TemplateToggle
-						TemplateToggle.Name = "TemplateToggle"
-						TemplateToggle.Parent = TemplatePage
-						TemplateToggle.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-						TemplateToggle.BorderColor3 = Color3.fromRGB(20, 20, 20)
-						TemplateToggle.Position = UDim2.new(0, 0, 0.198794991, 0)
-						TemplateToggle.Size = UDim2.new(0, 295, 0, 30)
-						TemplateToggle.Font = Enum.Font.Gotham
-						TemplateToggle.Text = ""..ToggleText
-						TemplateToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
-						TemplateToggle.TextSize = 12.000
+					UICorner_19.CornerRadius = UDim.new(0, 4)
+					UICorner_19.Parent = Understand
 
-						UICornerToggle.CornerRadius = UDim.new(0, 4)
-						UICornerToggle.Parent = TemplateToggle
+					TutorialImage.Name = "TutorialImage"
+					TutorialImage.Parent = TutorialFrame
+					TutorialImage.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+					TutorialImage.BorderColor3 = Color3.fromRGB(30, 30, 30)
+					TutorialImage.Position = UDim2.new(0.0178458244, 0, 0.0309286155, 0)
+					TutorialImage.Size = UDim2.new(0, 410, 0, 140)
+					TutorialImage.Image = "http://www.roblox.com/asset/?id="..Images
 
-						updateSectionFrame()
-						UpdateSize()
+					UICorner_20.CornerRadius = UDim.new(0, 4)
+					UICorner_20.Parent = TutorialImage
 
-						TemplateToggle.MouseButton1Click:Connect(function()
-							callback()
-						end)
+					if _G.TutorialTweening == false then
+						_G.TutorialTweening = true
+						TutorialPage.Visible = true
+						ClickBlock.Visible = true
+						TutorialFrame:TweenPosition(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Quad, 1, true)
+						wait(1)
+						TabContainer.Visible = false
+						_G.TutorialTweening = false
 					end
-					return Elements
-				end
-				return Elements
+				end)
 			end
 			return Elements
 		end
