@@ -745,9 +745,18 @@ function IceHub.CreateMain()
 
 				updateSectionFrame()
 				UpdateSize()
-
+				
+				local Toggled = false
 				TemplateToggle.MouseButton1Click:Connect(function()
-					callback()
+					if not focusing then
+						if Toggled == false then
+							TemplateToggle.TextColor3 = Color3.fromRGB(0, 255, 255)
+						else
+							TemplateToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+						end
+						Toggled = not Toggled
+						pcall(callback, Toggled)
+					end
 				end)
 			end
 
