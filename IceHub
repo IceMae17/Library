@@ -757,7 +757,7 @@ function IceHub.CreateMain()
 						local UICornerToggle = Instance.new("UICorner")
 
 						-- TemplateToggle
-						TemplateToggle.Name = "TemplateButton"
+						TemplateToggle.Name = "TemplateToggle"
 						TemplateToggle.Parent = TemplatePage
 						TemplateToggle.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 						TemplateToggle.BorderColor3 = Color3.fromRGB(20, 20, 20)
