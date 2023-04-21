@@ -1,1 +1,6 @@
-
+game.StarterGui:SetCore("SendNotification", {
+	Title = "OOPS"; 
+	Text = "The owner is editing the code due to a problem please wait"; 
+	Icon = ""; 
+	Duration = 30;
+})
